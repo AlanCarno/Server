@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>服务器测试专用</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: aliceblue;
+        }
+        div img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <input type="file">
+    <button>点击获取服务器资源</button>
+    <div>
+        <img src="" alt="">
+    </div>
+    <script>
+        var button = document.querySelector("button");
+        var text = document.querySelector("textarea");
+        var input = document.querySelector("input");
+        button.onclick = function () {
+            const instance = axios.create({
+                baseURL: 'http://127.0.0.1:8001',
+                timeout: 1000,
+            });
+            instance.get('/api/test',{
+                
+            }).then((res)=>{
+                text.innerHTML=res.data;
+            })
+        };
+        // input.onchange = function () {
+        //     const instance = axios.create({
+        //         baseURL: 'http://127.0.0.1:8001',
+        //         timeout: 1000,
+        //     });
+        //     const formdata=new FormData();
+        //     formdata.append('file',input.files[0]);
+        //     console.log(formdata);
+        //     instance.post('/api/test',formdata).then((res) => {
+        //         console.log(res)
+        //     })
+        // }
+    </script>
+</body>
+
+</html>
